@@ -24,7 +24,7 @@ const Navbar = () => {
         <div
           className={`sm:hidden ${
             showMenu
-              ? "flex flex-col fixed top-16 right-0 w-4/12 rounded-b-md bg-sky-200 items-start gap-4"
+              ? "flex flex-col fixed top-16 right-0 w-6/12 rounded-b-md bg-sky-200 items-start gap-4"
               : "hidden"
           }`}
         >

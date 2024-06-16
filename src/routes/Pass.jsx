@@ -67,7 +67,7 @@ const Pass = () => {
   return (
     <>
       <ToastContainer
-        position="bottom-right"
+        position="top-center"
         autoClose={4000}
         draggable={true}
         pauseOnHover={false}
@@ -232,7 +232,7 @@ const Pass = () => {
                 </tbody>
               </table>
             </div>
-            <div>
+            <div className="mb-4">
               <div className="w-full sm:hidden flex flex-col gap-4">
                 {passwords.map((password) => (
                   <div
