@@ -9,8 +9,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route path="/" exact element={<Pass />} />
-        <Route path="/passgenerator" exact element={<Generator />} />
+        <Route path="/PassLocker/" exact element={<Pass />} />
+        <Route path="/PassLocker/passgenerator" exact element={<Generator />} />
       </Routes>
     </Router>
   </React.StrictMode>

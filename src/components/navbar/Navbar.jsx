@@ -3,15 +3,15 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const navItems = [
-    { name: "Home", slug: "/" },
-    { name: "PassGenerator", slug: "/passgenerator" },
+    { name: "Home", slug: "/PassLocker/" },
+    { name: "PassGenerator", slug: "/PassLocker/passgenerator" },
   ];
 
   return (
     <>
       <nav className="flex justify-between px-4 lg:px-32 items-center fixed bg-sky-200 w-screen h-16">
         <div className="text-3xl font-semibold select-none cursor-pointer">
-          <NavLink to="/" className={"flex items-center"}>
+          <NavLink to="/PassLocker/" className={"flex items-center"}>
             PassLocker
             <img src="padlock.png" alt="Lock Image" className="h-8 ml-1" />
           </NavLink>
@@ -21,6 +21,8 @@ const Navbar = () => {
             <div key={item.slug}>
               <NavLink
                 to={item.slug}
+                activeClassName="text-blue-700 font-semibold"
+                end={true}
                 className={({ isActive }) =>
                   isActive ? "text-blue-700 font-semibold" : ""
                 }
