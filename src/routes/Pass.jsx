@@ -88,7 +88,10 @@ const Pass = () => {
 
       {/* Form */}
       <div className="py-2">
-        <form className="w-6/12 mx-auto" onSubmit={handleSubmit}>
+        <form
+          className="w-full px-4 lg:w-8/12 sm:mx-auto"
+          onSubmit={handleSubmit}
+        >
           <div className="flex flex-col py-2 gap-2">
             <label htmlFor="web-url" className="px-2.5 font-medium">
               Enter website url
@@ -155,84 +158,126 @@ const Pass = () => {
       </div>
 
       {/* Passwords */}
-      <div className="w-8/12 mx-auto">
+      <div className="w-full px-4 lg:w-9/12 sm:mx-auto">
         <h2 className="text-xl font-semibold my-2.5">Your Passwords</h2>
         {passwords.length === 0 ? (
           <div>No Passwords to Show</div>
         ) : (
-          <table className="table-auto border-collapse w-full rounded-md overflow-hidden mb-3 text-left">
-            <thead className="bg-blue-600 text-white uppercase">
-              <tr>
-                <th className="p-2 border border-blue-600 border-r-blue-300 w-5/12">
-                  Website
-                </th>
-                <th className="p-2 border border-blue-600 border-r-blue-300">
-                  Username
-                </th>
-                <th className="p-2 border border-blue-600 border-r-blue-300">
-                  Password
-                </th>
-                <th className="p-2 border border-blue-600">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="bg-blue-100">
-              {/* TODO: Change icons for edit and delete button and add logic to them */}
-              {passwords.map((password) => (
-                <tr key={password.id} className="hover:bg-blue-200">
-                  <td className="p-2 border border-blue-300">
-                    <a href={password.webUrl} target="_blank">
-                      {password.webUrl}
-                    </a>
-                  </td>
-                  <td className="p-2 border border-blue-300">
-                    <div className="flex gap-2">
-                      <div className="w-9/12">{password.username}</div>
-                      <div
-                        className="cursor-pointer"
-                        onClick={() => copyText(password.username)}
-                      >
-                        📄
+          <>
+            <div className="w-full overflow-scroll scrollbar-none hidden sm:block">
+              <table className="table-auto border-collapse w-full rounded-md overflow-hidden mb-3 text-left">
+                <thead className="bg-blue-600 text-white uppercase">
+                  <tr>
+                    <th className="p-2 border border-blue-600 border-r-blue-300 w-5/12">
+                      Website
+                    </th>
+                    <th className="p-2 border border-blue-600 border-r-blue-300">
+                      Username
+                    </th>
+                    <th className="p-2 border border-blue-600 border-r-blue-300">
+                      Password
+                    </th>
+                    <th className="p-2 border border-blue-600">Actions</th>
+                  </tr>
+                </thead>
+                <tbody className="bg-blue-100">
+                  {/* TODO: Change icons for edit and delete button and add logic to them */}
+                  {passwords.map((password) => (
+                    <tr key={password.id} className="hover:bg-blue-200">
+                      <td className="p-2 border border-blue-300">
+                        <a href={password.webUrl} target="_blank">
+                          {password.webUrl}
+                        </a>
+                      </td>
+                      <td className="p-2 border border-blue-300">
+                        <div className="flex gap-2">
+                          <div className="w-9/12">{password.username}</div>
+                          <div
+                            className="cursor-pointer"
+                            onClick={() => copyText(password.username)}
+                          >
+                            📄
+                          </div>
+                        </div>
+                      </td>
+                      <td className="p-2 border border-blue-300">
+                        <div className="flex gap-2">
+                          <div className="w-9/12">{password.password}</div>
+                          <div
+                            className="cursor-pointer"
+                            onClick={() => copyText(password.password)}
+                          >
+                            📄
+                          </div>
+                        </div>
+                      </td>
+                      <td className="p-2 border border-blue-300">
+                        <div className="flex gap-2">
+                          <button
+                            className="p-2.5 w-fit"
+                            onClick={() => editPassword(password.id)}
+                          >
+                            ✏️
+                          </button>
+                          <button
+                            className="p-2.5 w-fit"
+                            onClick={() => deletePassword(password.id)}
+                          >
+                            ❌
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div>
+              <div className="w-full sm:hidden flex flex-col gap-4">
+                {passwords.map((password) => (
+                  <div
+                    className="w-full bg-blue-100 p-2.5 rounded-md flex justify-between"
+                    key={password.id}
+                  >
+                    <div>
+                      <div className="text-gray-600">
+                        <a href={password.webUrl} target="_blank">
+                          {password.webUrl}
+                        </a>
+                      </div>
+                      <div className="font-medium">
+                        {password.username}{" "}
+                        <span onClick={() => copyText(password.username)}>
+                          📄
+                        </span>
+                      </div>
+                      <div className="text-gray-600">
+                        {password.password}{" "}
+                        <span onClick={() => copyText(password.password)}>
+                          📄
+                        </span>
                       </div>
                     </div>
-                  </td>
-                  <td className="p-2 border border-blue-300">
-                    <div className="flex gap-2">
-                      <div className="w-9/12">{password.password}</div>
-                      <div
-                        className="cursor-pointer"
-                        onClick={() => copyText(password.password)}
-                      >
-                        📄
-                      </div>
-                    </div>
-                  </td>
-                  <td className="p-2 border border-blue-300">
-                    <div className="flex gap-2">
+                    <div className="flex flex-col">
                       <button
-                        className="p-2.5 w-fit"
+                        className="p-1.5 w-fit"
                         onClick={() => editPassword(password.id)}
                       >
                         ✏️
                       </button>
                       <button
-                        className="p-2.5 w-fit"
+                        className="p-1.5 w-fit"
                         onClick={() => deletePassword(password.id)}
                       >
                         ❌
                       </button>
                     </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
         )}
-        {passwords.map((password) => (
-          <div
-            key={password.id}
-            className="grid grid-cols-1 md:grid-cols-4 gap-2"
-          ></div>
-        ))}
       </div>
     </>
   );
